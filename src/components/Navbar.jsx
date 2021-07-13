@@ -11,7 +11,7 @@ const Navbar = ({ signedInUser }) => {
         <Link to="/users">
           <button>Users</button>
         </Link>
-        <p>Signed in as {signedInUser}</p>
+        <p className="user">Signed in as {signedInUser}</p>
       </div>
     );
   } else {

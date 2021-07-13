@@ -44,8 +44,8 @@ const Review = ({ signedInUser, errorMessage, setErrorMessage }) => {
   if (!isReviewLoading) {
     return (
       <div>
-        <h3>{review.title}</h3>
-        <p>Game Designer: {review.designer}</p>
+        <h3 className="reviewtitle">{review.title}</h3>
+        <p className="designer">Game Designer: {review.designer}</p>
         <img
           className="image"
           src={review.review_img_url}

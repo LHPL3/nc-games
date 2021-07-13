@@ -70,17 +70,18 @@ const Reviews = ({
               <li key={review.review_id}>
                 <div className="review">
                   <Link to={`/reviews/${review.review_id}`}>
-                    <h3>{review.title}</h3>
+                    <h3 className="toptext">{review.title}</h3>
                   </Link>
                   <img
                     className="reviewimage"
                     alt={review.title}
                     src={review.review_img_url}
                   ></img>
-                  <p>
-                    Votes: {review.votes} - Comments: {review.comment_count}
+                  <p className="bottomtext">
+                    Votes: {review.votes} - Comments: {review.comment_count}{' '}
+                    <br />
+                    Created: {review.created_at}
                   </p>
-                  <p>Created: {review.created_at}</p>
                 </div>
               </li>
             );

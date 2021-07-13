@@ -61,11 +61,7 @@ const User = ({ setSignedInUser, errorMessage, setErrorMessage }) => {
                   <Link to={`/reviews/${review.review_id}`}>
                     <h3>{review.title}</h3>
                   </Link>
-                  <img
-                    className="reviewimage"
-                    alt={review.title}
-                    src={review.review_img_url}
-                  ></img>
+
                   <p>
                     Votes: {review.votes} - Comments: {review.comment_count}
                   </p>

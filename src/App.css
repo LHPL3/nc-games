@@ -2,11 +2,13 @@
   text-align: center;
   font-family: 'Nunito', sans-serif;
   background-image: linear-gradient(
-    to right,
+    to bottom,
     rgb(3, 4, 94),
     rgb(202, 240, 248)
   );
+  width: 100vw;
   height: 100vh;
+  margin: 0px auto;
 }
 
 body,
@@ -20,10 +22,32 @@ h1 {
   color: rgb(173, 232, 244);
   font-family: 'Zen Tokyo Zoo', cursive;
   font-size: 40px;
+  animation-duration: 8s;
+  animation-name: slidein;
+  animation-iteration-count: infinite;
+}
+
+@keyframes slidein {
+  0% {
+    margin-left: 0%;
+  }
+  33% {
+    margin-left: 300px;
+  }
+  66% {
+    margin-right: 300px;
+  }
+  100% {
+    margin-left: 0%;
+  }
 }
 
 ul {
   list-style: none;
+}
+
+.user {
+  color: white;
 }
 
 .reviews {
@@ -35,36 +59,60 @@ ul {
 }
 
 .review {
+  position: relative;
   border: solid black;
   width: 300px;
-  height: 250px;
+  height: 275px;
   margin: 10px;
   background-color: rgb(202, 240, 248);
 }
 
+.reviewtitle {
+  margin: 0;
+  font-size: 40px;
+  text-align: left;
+  text-shadow: -1px -1px 0 rgb(255, 255, 255), 1px -1px 0 rgb(255, 255, 255),
+    -1px 1px 0 rgb(255, 255, 255), 1px 1px 0 rgb(255, 255, 255);
+}
+.designer {
+  margin-top: 0%;
+  text-align: left;
+  font-size: 25px;
+  text-shadow: -0.55px -0.55px 0 rgb(255, 255, 255),
+    0.55px -0.55px 0 rgb(255, 255, 255), -0.55px 0.55px 0 rgb(255, 255, 255),
+    0.55px 0.55px 0 rgb(255, 255, 255);
+}
+
+.bottomtext {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0;
+  margin-left: 15px;
+}
+
+.toptext {
+  margin-top: 1px;
+}
+
 .reviewimage {
-  height: 100px;
-  width: 100px;
+  position: absolute;
+  bottom: 60px;
+  right: 75px;
+  height: 150px;
+  width: 150px;
 }
 
 .reviewbody {
-  border: solid black;
-  width: 80vh;
-  display: block;
-  margin: auto;
 }
 
 .image {
-  height: 100px;
-  width: 100px;
+  height: 250px;
+  width: 250px;
 }
 
 .container {
   max-height: 100vh;
   overflow-y: auto;
-}
-
-.commentbox {
 }
 
 /* 
