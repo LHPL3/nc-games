@@ -20,10 +20,13 @@ const Addcomment = ({ signedInUser, getComments, setIsCommentsLoading }) => {
         <button
           onClick={(event) => {
             event.preventDefault();
-            addComment(review_id, signedInUser, newComment).then((response) => {
-              getComments();
-              setIsCommentsLoading(true);
-            });
+            addComment(review_id, signedInUser, newComment)
+              .then((response) => {
+                getComments();
+              })
+              .then((response) => {
+                setIsCommentsLoading(true);
+              });
           }}
         >
           Submit!

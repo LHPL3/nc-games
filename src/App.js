@@ -45,7 +45,11 @@ function App() {
           <Users />
         </Route>
         <Route exact path="/users/:username">
-          <User setSignedInUser={setSignedInUser} />
+          <User
+            setSignedInUser={setSignedInUser}
+            errorMessage={errorMessage}
+            setErrorMessage={setErrorMessage}
+          />
         </Route>
         <Route path="/">
           <Error />

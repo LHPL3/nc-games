@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getReviews, getUser } from '../utils/api';
 import { Link } from 'react-router-dom';
+import Error from './Error';
 
-const User = ({ setSignedInUser }) => {
+const User = ({ setSignedInUser, errorMessage, setErrorMessage }) => {
   const [user, setUser] = useState('');
   const [userReview, setUserReview] = useState([]);
   const [isUserLoading, setIsUserLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
   const { username } = useParams();
 
   useEffect(() => {
@@ -16,8 +18,20 @@ const User = ({ setSignedInUser }) => {
         setUser(values[0]);
         setUserReview(values[1]);
       })
-      .then(setIsUserLoading(false));
-  }, [username]);
+      .then(setIsUserLoading(false))
+      .catch((err) => {
+        setErrorMessage(err.response.data.msg);
+        setIsError(true);
+      });
+  }, [username, setErrorMessage]);
+
+  if (isError) {
+    return (
+      <div>
+        <Error errorMessage={errorMessage} />
+      </div>
+    );
+  }
 
   if (!isUserLoading) {
     let filteredReviews = userReview.filter((review) => {
