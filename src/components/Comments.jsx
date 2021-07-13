@@ -1,23 +1,49 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { addVotesToComment, getCommentsById } from '../utils/api';
+import {
+  addVotesToComment,
+  deleteComment,
+  getCommentsById
+} from '../utils/api';
+import Addcomment from './Addcomment';
 
-const Comments = () => {
+const Comments = ({ signedInUser }) => {
   const { review_id } = useParams();
   const [comments, setComments] = useState('');
   const [isCommentsLoading, setIsCommentsLoading] = useState(true);
-  const [update, setUpdate] = useState('');
+
+  const getComments = () => {
+    getCommentsById(review_id)
+      .then((response) => {
+        setComments(response);
+      })
+      .then((response) => {
+        setIsCommentsLoading(false);
+      });
+  };
 
   useEffect(() => {
-    getCommentsById(review_id).then((response) => {
-      setComments(response);
-      setIsCommentsLoading(false);
-    });
-  }, [update]);
+    getCommentsById(review_id)
+      .then((response) => {
+        setComments(response);
+      })
+      .then((response) => {
+        setIsCommentsLoading(false);
+      });
+  }, [review_id]);
 
   if (!isCommentsLoading) {
     if (comments.length === 0) {
-      return <div>No Comments</div>;
+      return (
+        <div>
+          <p>No Comments</p>
+          <Addcomment
+            signedInUser={signedInUser}
+            getComments={getComments}
+            setIsCommentsLoading={setIsCommentsLoading}
+          />
+        </div>
+      );
     } else {
       return (
         <div>
@@ -28,14 +54,29 @@ const Comments = () => {
                 <li key={comment.comment_id}>
                   <div className="comment">
                     <p>
-                      {comment.body} - By {comment.author} on{' '}
-                      {comment.created_at.slice(0, 10)}// {comment.votes} Votes
+                      {comment.body}{' '}
+                      {signedInUser === comment.author ? (
+                        <button
+                          onClick={(event) => {
+                            event.preventDefault();
+                            deleteComment(comment.comment_id).then(
+                              (response) => {
+                                getComments();
+                              }
+                            );
+                          }}
+                        >
+                          X
+                        </button>
+                      ) : null}
+                      - By {comment.author} on {comment.created_at} -
+                      {comment.votes} Votes
                       <button
                         onClick={(event) => {
                           event.preventDefault();
                           addVotesToComment(comment.comment_id).then(
                             (response) => {
-                              setUpdate(update + 1);
+                              getComments();
                             }
                           );
                         }}
@@ -48,6 +89,11 @@ const Comments = () => {
               );
             })}
           </ul>
+          <Addcomment
+            signedInUser={signedInUser}
+            getComments={getComments}
+            setIsCommentsLoading={setIsCommentsLoading}
+          />
         </div>
       );
     }

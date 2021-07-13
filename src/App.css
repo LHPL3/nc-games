@@ -1,10 +1,25 @@
 .App {
   text-align: center;
+  font-family: 'Nunito', sans-serif;
+  background-image: linear-gradient(
+    to right,
+    rgb(3, 4, 94),
+    rgb(202, 240, 248)
+  );
+  height: 100vh;
 }
 
-.image {
-  width: 50px;
-  height: 50px;
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin: 0;
+  color: rgb(173, 232, 244);
+  font-family: 'Zen Tokyo Zoo', cursive;
+  font-size: 40px;
 }
 
 ul {
@@ -12,5 +27,54 @@ ul {
 }
 
 .reviews {
-  overflow: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-content: center;
+  margin: 0;
 }
+
+.review {
+  border: solid black;
+  width: 300px;
+  height: 250px;
+  margin: 10px;
+  background-color: rgb(202, 240, 248);
+}
+
+.reviewimage {
+  height: 100px;
+  width: 100px;
+}
+
+.reviewbody {
+  border: solid black;
+  width: 80vh;
+  display: block;
+  margin: auto;
+}
+
+.image {
+  height: 100px;
+  width: 100px;
+}
+
+.container {
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+.commentbox {
+}
+
+/* 
+3, 4, 94
+2, 62, 138
+0, 119, 182
+0, 150, 199
+0, 180, 216
+72, 202, 228
+144, 224, 239
+173, 232, 244
+202, 240, 248
+ */

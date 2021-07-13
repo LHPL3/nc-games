@@ -3,20 +3,36 @@ import Categories from './Categories';
 import { getReviews } from '../utils/api';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Error from './Error';
 
-const Reviews = ({ category, setCategory, reviews, setReviews }) => {
+const Reviews = ({
+  category,
+  setCategory,
+  reviews,
+  setReviews,
+  errorMessage,
+  setErrorMessage
+}) => {
   const [isReviewsLoading, setIsReviewsLoading] = useState(true);
+  const [sortCriteria, setSortCriteria] = useState('');
+  const [sortByComments, setSortByComments] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    getReviews().then((response) => {
-      setReviews(
-        response.map((review) => {
-          return review;
-        })
-      );
-      setIsReviewsLoading(false);
-    });
-  }, []);
+    getReviews(sortCriteria)
+      .then((response) => {
+        setReviews(
+          response.map((review) => {
+            return review;
+          })
+        );
+        setIsReviewsLoading(false);
+      })
+      .catch((err) => {
+        setErrorMessage(err.response.data.msg);
+        setIsError(true);
+      });
+  }, [sortCriteria, setReviews, setErrorMessage]);
 
   let filteredReviews = reviews;
 
@@ -26,27 +42,45 @@ const Reviews = ({ category, setCategory, reviews, setReviews }) => {
     });
   }
 
-  if (!isReviewsLoading) {
+  if (sortByComments) {
+    filteredReviews.sort((a, b) => {
+      return b.comment_count - a.comment_count;
+    });
+  }
+
+  if (isError) {
     return (
       <div>
-        <Categories category={category} setCategory={setCategory} />
+        <Error errorMessage={errorMessage} />
+      </div>
+    );
+  }
+
+  if (!isReviewsLoading) {
+    return (
+      <div className="container">
+        <Categories
+          setCategory={setCategory}
+          setSortCriteria={setSortCriteria}
+          setSortByComments={setSortByComments}
+        />
         <ul className="reviews">
           {filteredReviews.map((review) => {
             return (
               <li key={review.review_id}>
                 <div className="review">
                   <Link to={`/reviews/${review.review_id}`}>
-                    <h2>{review.title}</h2>
+                    <h3>{review.title}</h3>
                   </Link>
                   <img
-                    className="image"
+                    className="reviewimage"
                     alt={review.title}
                     src={review.review_img_url}
                   ></img>
                   <p>
-                    Votes: {review.votes} // Comments: {review.comment_count}
+                    Votes: {review.votes} - Comments: {review.comment_count}
                   </p>
-                  <p></p>
+                  <p>Created: {review.created_at}</p>
                 </div>
               </li>
             );

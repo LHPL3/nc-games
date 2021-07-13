@@ -4,9 +4,16 @@ const baseApi = axios.create({
   baseURL: 'https://lh-game-review.herokuapp.com/api'
 });
 
-export const getReviews = async () => {
-  const { data } = await baseApi.get('/reviews');
-  return data.reviews;
+export const getReviews = async (sortCriteria) => {
+  if (sortCriteria !== '') {
+    const { data } = await baseApi.get('/reviews', {
+      params: { sort_by: sortCriteria }
+    });
+    return data.reviews;
+  } else {
+    const { data } = await baseApi.get('/reviews');
+    return data.reviews;
+  }
 };
 
 export const getReviewById = async (review_id) => {
@@ -36,4 +43,29 @@ export const addVotesToComment = async (comment_id) => {
     inc_votes: 1
   });
   return data.updated;
+};
+
+export const getUsers = async () => {
+  const { data } = await baseApi.get('/users');
+  return data.users;
+};
+
+export const getUser = async (username) => {
+  const { data } = await baseApi.get(`users/${username}`);
+  return data.user;
+};
+
+export const addComment = async (review_id, username, body) => {
+  if (body.length !== 0 && username !== '') {
+    const { data } = await baseApi.post(`reviews/${review_id}/comments`, {
+      username: username,
+      body: body
+    });
+    return data.comment;
+  }
+};
+
+export const deleteComment = async (comment_id) => {
+  const { data } = await baseApi.delete(`comments/${comment_id}`);
+  return data;
 };

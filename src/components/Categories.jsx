@@ -2,7 +2,7 @@ import React from 'react';
 import { getCategories } from '../utils/api';
 import { useState, useEffect } from 'react';
 
-const Categories = ({ category, setCategory }) => {
+const Categories = ({ setCategory, setSortCriteria, setSortByComments }) => {
   const [categories, setCategories] = useState('');
   const [isCategoriesLoading, setIsCategoriesLoading] = useState(true);
 
@@ -38,9 +38,39 @@ const Categories = ({ category, setCategory }) => {
           onClick={(event) => {
             event.preventDefault();
             setCategory('');
+            setSortCriteria('');
+            setSortByComments(false);
           }}
         >
           Reset
+        </button>
+        -
+        <button
+          onClick={(event) => {
+            event.preventDefault();
+            setSortByComments(false);
+            setSortCriteria('created_at');
+          }}
+        >
+          Date
+        </button>
+        <button
+          onClick={(event) => {
+            event.preventDefault();
+            setSortCriteria('');
+            setSortByComments(true);
+          }}
+        >
+          Comments
+        </button>
+        <button
+          onClick={(event) => {
+            event.preventDefault();
+            setSortByComments(false);
+            setSortCriteria('votes');
+          }}
+        >
+          Votes
         </button>
       </div>
     );

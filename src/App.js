@@ -13,14 +13,20 @@ import Error from './components/Error';
 function App() {
   const [category, setCategory] = useState('');
   const [reviews, setReviews] = useState('');
+  const [signedInUser, setSignedInUser] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   return (
     <div className="App">
       <Header />
-      <Navbar />
+      <Navbar signedInUser={signedInUser} />
       <Switch>
         <Route exact path="/reviews/:review_id">
-          <Review />
+          <Review
+            signedInUser={signedInUser}
+            errorMessage={errorMessage}
+            setErrorMessage={setErrorMessage}
+          />
         </Route>
         <Route exact path="/">
           <Home />
@@ -31,13 +37,15 @@ function App() {
             setCategory={setCategory}
             reviews={reviews}
             setReviews={setReviews}
+            errorMessage={errorMessage}
+            setErrorMessage={setErrorMessage}
           />
         </Route>
         <Route exact path="/users">
           <Users />
         </Route>
-        <Route exact path="/users/user">
-          <User />
+        <Route exact path="/users/:username">
+          <User setSignedInUser={setSignedInUser} />
         </Route>
         <Route path="/">
           <Error />
