@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { getUsers } from '../utils/api';
 import { Link } from 'react-router-dom';
+import Loading from './Loading';
 
 const Users = () => {
   const [users, setUsers] = useState('');
@@ -16,13 +17,13 @@ const Users = () => {
 
   if (!isUsersLoading) {
     return (
-      <div>
+      <div className="userscontainer">
         <ul className="users">
           {users.map((user) => {
             return (
-              <li key={user.username}>
+              <li className="userlist" key={user.username}>
                 <Link to={`/users/${user.username}`}>
-                  <h3>{user.username}</h3>
+                  <button className="userbutton">{user.username}</button>
                 </Link>
               </li>
             );
@@ -31,7 +32,11 @@ const Users = () => {
       </div>
     );
   } else {
-    return <div>...Loading</div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 };
 

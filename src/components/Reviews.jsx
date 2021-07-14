@@ -1,9 +1,11 @@
 import React from 'react';
 import Categories from './Categories';
 import { getReviews } from '../utils/api';
+import { amendDate } from '../utils/utils';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Error from './Error';
+import Loading from './Loading';
 
 const Reviews = ({
   category,
@@ -80,7 +82,7 @@ const Reviews = ({
                   <p className="bottomtext">
                     Votes: {review.votes} - Comments: {review.comment_count}{' '}
                     <br />
-                    Created: {review.created_at}
+                    Created: {amendDate(review.created_at)}
                   </p>
                 </div>
               </li>
@@ -90,7 +92,11 @@ const Reviews = ({
       </div>
     );
   } else {
-    return <div>...Loading</div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 };
 

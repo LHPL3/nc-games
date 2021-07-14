@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { getReviews, getUser } from '../utils/api';
 import { Link } from 'react-router-dom';
 import Error from './Error';
+import Loading from './Loading';
 
 const User = ({ setSignedInUser, errorMessage, setErrorMessage }) => {
   const [user, setUser] = useState('');
@@ -39,41 +40,49 @@ const User = ({ setSignedInUser, errorMessage, setErrorMessage }) => {
     });
 
     return (
-      <div className="container">
-        <h3>Welcome to {user.name}'s page</h3>
-        <p>
-          Username: {user.username}
-          <button
-            onClick={(event) => {
-              event.preventDefault();
-              setSignedInUser(user.username);
-            }}
-          >
-            Login
-          </button>
-        </p>
-        <img src={user.avatar_url} alt={user.username}></img>
-        <ul>
-          {filteredReviews.map((review) => {
-            return (
-              <li key={review.review_id}>
-                <div className="userreview">
-                  <Link to={`/reviews/${review.review_id}`}>
-                    <h3>{review.title}</h3>
-                  </Link>
-
-                  <p>
-                    Votes: {review.votes} - Comments: {review.comment_count}
-                  </p>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+      <div className="usercontainer">
+        <div className="border">
+          <h3 className="reviewtitle">Welcome to {user.name}'s page</h3>
+          <p className="designer">
+            Username: {user.username}
+            <button
+              className="loginbutton"
+              onClick={(event) => {
+                event.preventDefault();
+                setSignedInUser(user.username);
+              }}
+            >
+              Login
+            </button>
+          </p>
+          <span>
+            <img src={user.avatar_url} alt={user.username}></img>
+            <ul>
+              {filteredReviews.map((review) => {
+                return (
+                  <li key={review.review_id}>
+                    <div className="userreview">
+                      <Link to={`/reviews/${review.review_id}`}>
+                        <h3>{review.title}</h3>
+                      </Link>
+                      <p>
+                        Votes: {review.votes} - Comments: {review.comment_count}
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </span>
+        </div>
       </div>
     );
   } else {
-    return <div>...Loading</div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 };
 

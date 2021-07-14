@@ -7,27 +7,33 @@
     rgb(202, 240, 248)
   );
   width: 100vw;
-  height: 100vh;
-  margin: 0px auto;
+  height: 100%;
+  margin: 0px;
+  overflow: hidden;
 }
 
 body,
 html {
+  overflow: hidden;
   margin: 0;
   padding: 0;
 }
 
 h1 {
   margin: 0;
-  color: rgb(173, 232, 244);
+  color: rgb(3, 4, 94);
   font-family: 'Zen Tokyo Zoo', cursive;
   font-size: 40px;
-  animation-duration: 8s;
+  text-shadow: 0 0 7px rgb(144, 224, 239), 0 0 10px rgb(144, 224, 239),
+    0 0 21px rgb(144, 224, 239), 0 0 42px rgb(202, 240, 248),
+    0 0 82px rgb(202, 240, 248), 0 0 92px rgb(202, 240, 248),
+    0 0 102px rgb(202, 240, 248), 0 0 151px rgb(202, 240, 248);
+  /* animation-duration: 8s;
   animation-name: slidein;
-  animation-iteration-count: infinite;
+  animation-iteration-count: infinite; */
 }
 
-@keyframes slidein {
+/* @keyframes slidein {
   0% {
     margin-left: 0%;
   }
@@ -40,27 +46,24 @@ h1 {
   100% {
     margin-left: 0%;
   }
-}
+} */
 
 ul {
   list-style: none;
+  padding-left: 0;
 }
 
-.user {
+.homecontainer {
+  height: 82.75vh;
+}
+
+.users {
   color: white;
-}
-
-.reviews {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
-  align-content: center;
-  margin: 0;
 }
 
 .review {
   position: relative;
-  border: solid black;
+  border: dashed rgb(3, 4, 94);
   width: 300px;
   height: 275px;
   margin: 10px;
@@ -68,19 +71,65 @@ ul {
 }
 
 .reviewtitle {
+  color: rgb(3, 4, 94);
   margin: 0;
-  font-size: 40px;
-  text-align: left;
+  font-size: 25px;
+  text-align: center;
   text-shadow: -1px -1px 0 rgb(255, 255, 255), 1px -1px 0 rgb(255, 255, 255),
     -1px 1px 0 rgb(255, 255, 255), 1px 1px 0 rgb(255, 255, 255);
 }
+
+.loading {
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .designer {
+  color: rgb(3, 4, 94);
   margin-top: 0%;
-  text-align: left;
-  font-size: 25px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 15px;
   text-shadow: -0.55px -0.55px 0 rgb(255, 255, 255),
     0.55px -0.55px 0 rgb(255, 255, 255), -0.55px 0.55px 0 rgb(255, 255, 255),
     0.55px 0.55px 0 rgb(255, 255, 255);
+}
+
+.border {
+  height: 78vh;
+  border: dashed rgb(3, 4, 94);
+  background-color: rgb(202, 240, 248);
+  overflow-y: scroll;
+}
+
+.reviewarea {
+  height: 88vh;
+}
+
+.columns {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin-left: 25px;
+}
+
+.reviewbody {
+  width: 50vh;
+  font-size: 20px;
+  text-align: center;
+}
+
+.plusbutton {
+  border-radius: 1em;
+  background-color: rgb(3, 4, 94);
+  color: rgb(202, 240, 248);
+}
+
+.deletebutton {
+  border-radius: 1em;
+  background-color: rgb(153, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
 .bottomtext {
@@ -92,6 +141,7 @@ ul {
 
 .toptext {
   margin-top: 1px;
+  text-decoration: none;
 }
 
 .reviewimage {
@@ -100,19 +150,227 @@ ul {
   right: 75px;
   height: 150px;
   width: 150px;
+  border: outset;
 }
 
-.reviewbody {
+.commentsection {
+  grid-area: three / first / five / fourth;
+}
+
+.commentbox {
+  margin-bottom: 10px;
 }
 
 .image {
-  height: 250px;
-  width: 250px;
+  height: 252.5px;
+  width: 252.5px;
+  margin-left: 35px;
+  border: outset;
 }
 
 .container {
-  max-height: 100vh;
+  max-height: 80vh;
   overflow-y: auto;
+}
+
+.topimage {
+  border: outset;
+  height: 252.5px;
+  width: 252.5px;
+}
+
+.usercontainer {
+  height: 88vh;
+}
+
+.userscontainer {
+  height: 86vh;
+}
+
+.reviews {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-content: center;
+  margin-top: 0px;
+}
+
+.menubutton {
+  border-radius: 10px;
+  background-color: rgb(72, 202, 228);
+  color: rgb(202, 240, 248);
+  text-align: center;
+  font-size: 20px;
+  padding: 15px;
+  width: 150px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.userbutton {
+  border-radius: 10px;
+  background-color: rgb(0, 150, 199);
+  color: rgb(202, 240, 248);
+  text-align: center;
+  padding: 5px;
+  margin: 5px;
+  width: 125px;
+  cursor: pointer;
+}
+
+.loginbutton {
+  border-radius: 10px;
+  background-color: rgb(0, 150, 199);
+  color: rgb(202, 240, 248);
+  text-align: center;
+  padding: 5px;
+  margin-left: 15px;
+  width: 125px;
+  cursor: pointer;
+}
+
+.user {
+  color: rgb(202, 240, 248);
+  margin-top: 0px;
+}
+
+.navarea {
+  display: grid;
+  grid-template-rows: 1.5fr 0.5fr;
+  height: 90px;
+}
+
+.categorybutton {
+  border-radius: 10px;
+  background-color: rgb(0, 150, 199);
+  color: rgb(202, 240, 248);
+  text-align: center;
+  padding: 2px;
+  margin: 2px;
+  width: 105px;
+  cursor: pointer;
+}
+
+.resetbutton {
+  border-radius: 10px;
+  background-color: rgb(202, 240, 248);
+  color: rgb(0, 150, 199);
+  text-align: center;
+  padding: 2px;
+  margin: 2px;
+  width: 50px;
+  cursor: pointer;
+}
+
+.sortbutton {
+  border-radius: 10px;
+  background-color: rgb(2, 62, 138);
+  color: rgb(72, 202, 228);
+  text-align: center;
+  padding: 2px;
+  margin: 2px;
+  width: 75px;
+  cursor: pointer;
+}
+
+.loader {
+  display: inline-block;
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.loader:after {
+  content: '';
+  display: block;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 32px solid #fff;
+  border-color: rgb(0, 119, 182) rgb(144, 224, 239);
+  animation: loader 1.2s infinite;
+}
+@keyframes loader {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  50% {
+    transform: rotate(-900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  100% {
+    transform: rotate(900deg);
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .columns {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
+
+  .border {
+    border: solid;
+    background-color: rgb(202, 240, 248);
+    overflow-y: scroll;
+    margin: 0px 120px 0px 120px;
+  }
+
+  .homecontainer {
+    height: 88vh;
+  }
+
+  .reviews {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: flex-start;
+    height: 77.5vh;
+  }
+
+  .container {
+    max-height: 88vh;
+    overflow-y: auto;
+  }
+
+  .navarea {
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    height: 66px;
+  }
+
+  .user {
+    color: rgb(202, 240, 248);
+    margin-top: 8px;
+  }
+
+  .navbar {
+    margin-left: 192px;
+  }
+
+  .reviewtitle {
+    color: rgb(3, 4, 94);
+    margin: 0;
+    font-size: 40px;
+    text-align: center;
+    text-shadow: -1px -1px 0 rgb(255, 255, 255), 1px -1px 0 rgb(255, 255, 255),
+      -1px 1px 0 rgb(255, 255, 255), 1px 1px 0 rgb(255, 255, 255);
+  }
+
+  .designer {
+    color: rgb(3, 4, 94);
+    margin-top: 0%;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 25px;
+    text-shadow: -0.55px -0.55px 0 rgb(255, 255, 255),
+      0.55px -0.55px 0 rgb(255, 255, 255), -0.55px 0.55px 0 rgb(255, 255, 255),
+      0.55px 0.55px 0 rgb(255, 255, 255);
+  }
 }
 
 /* 

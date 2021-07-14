@@ -5,7 +5,9 @@ import {
   deleteComment,
   getCommentsById
 } from '../utils/api';
+import { amendDate } from '../utils/utils';
 import Addcomment from './Addcomment';
+import Loading from './Loading';
 
 const Comments = ({ signedInUser }) => {
   const { review_id } = useParams();
@@ -62,6 +64,7 @@ const Comments = ({ signedInUser }) => {
                       {comment.body}{' '}
                       {signedInUser === comment.author ? (
                         <button
+                          className="deletebutton"
                           onClick={(event) => {
                             event.preventDefault();
                             deleteComment(comment.comment_id).then(
@@ -71,12 +74,14 @@ const Comments = ({ signedInUser }) => {
                             );
                           }}
                         >
-                          X
+                          Delete
                         </button>
                       ) : null}
-                      - By {comment.author} on {comment.created_at} -
+                      <br />- By {comment.author} on{' '}
+                      {amendDate(comment.created_at)} <br />
                       {comment.votes} Votes
                       <button
+                        className="plusbutton"
                         onClick={(event) => {
                           event.preventDefault();
                           addVotesToComment(comment.comment_id).then(
@@ -103,7 +108,11 @@ const Comments = ({ signedInUser }) => {
       );
     }
   } else {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 };
 export default Comments;

@@ -2,30 +2,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = ({ signedInUser }) => {
-  if (signedInUser !== '') {
-    return (
-      <div>
+  return (
+    <div className="navarea">
+      <span className="navbar">
         <Link to="/reviews">
-          <button>Reviews</button>
+          <button className="menubutton">
+            <span>Reviews</span>
+          </button>
         </Link>
         <Link to="/users">
-          <button>Users</button>
+          <button className="menubutton">
+            <span>Users</span>
+          </button>
         </Link>
-        <p className="user">Signed in as {signedInUser}</p>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <Link to="/reviews">
-          <button>Reviews</button>
-        </Link>
-        <Link to="/users">
-          <button>Users</button>
-        </Link>
-      </div>
-    );
-  }
+      </span>
+      {signedInUser ? (
+        <span className="user">Signed in as {signedInUser}</span>
+      ) : null}
+    </div>
+  );
 };
 
 export default Navbar;

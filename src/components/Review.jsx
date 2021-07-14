@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { addVotesToReview, getReviewById } from '../utils/api';
+import { amendDate } from '../utils/utils';
 import Comments from './Comments';
 import { useParams } from 'react-router';
 import Error from './Error';
+import Loading from './Loading';
 
 const Review = ({ signedInUser, errorMessage, setErrorMessage }) => {
   const [review, setReview] = useState('');
@@ -43,36 +45,45 @@ const Review = ({ signedInUser, errorMessage, setErrorMessage }) => {
   }
   if (!isReviewLoading) {
     return (
-      <div>
-        <h3 className="reviewtitle">{review.title}</h3>
-        <p className="designer">Game Designer: {review.designer}</p>
-        <img
-          className="image"
-          src={review.review_img_url}
-          alt={review.title}
-        ></img>
-        <p className="reviewbody">{review.review_body}</p>
-        <p>
-          by {review.owner} - posted on {review.created_at.slice(0, 10)}
-        </p>
-        <p>
-          Votes: {review.votes}
-          <button
-            onClick={(event) => {
-              event.preventDefault();
-              addVotesToReview(review_id).then((response) => {
-                getReview();
-              });
-            }}
-          >
-            +1
-          </button>
-        </p>
-        <Comments signedInUser={signedInUser} />
+      <div className="reviewarea">
+        <div className="border">
+          <h3 className="reviewtitle">{review.title}</h3>
+          <p className="designer">Game Designer: {review.designer}</p>
+          <span className="columns">
+            <p className="reviewbody">{review.review_body}</p>
+            <img
+              className="image"
+              src={review.review_img_url}
+              alt={review.title}
+            ></img>
+          </span>
+          <p>
+            by {review.owner} - posted on {amendDate(review.created_at)}
+          </p>
+          <p>
+            Votes: {review.votes}
+            <button
+              className="plusbutton"
+              onClick={(event) => {
+                event.preventDefault();
+                addVotesToReview(review_id).then((response) => {
+                  getReview();
+                });
+              }}
+            >
+              +1
+            </button>
+          </p>
+          <Comments signedInUser={signedInUser} />
+        </div>
       </div>
     );
   } else {
-    return <div>...Loading</div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 };
 

@@ -1,20 +1,29 @@
 import React from 'react';
 import { getCategories } from '../utils/api';
 import { useState, useEffect } from 'react';
+import Loading from './Loading';
 
 const Categories = ({ setCategory, setSortCriteria, setSortByComments }) => {
   const [categories, setCategories] = useState('');
   const [isCategoriesLoading, setIsCategoriesLoading] = useState(true);
 
+  const resetClick = () => {
+    setCategory('');
+    setSortCriteria('');
+    setSortByComments(false);
+  };
+
   useEffect(() => {
-    getCategories().then((response) => {
-      setCategories(
-        response.map((category) => {
+    getCategories()
+      .then((response) => {
+        const cats = response.map((category) => {
           return category.slug;
-        })
-      );
-      setIsCategoriesLoading(false);
-    });
+        });
+        setCategories(cats);
+      })
+      .then((response) => {
+        setIsCategoriesLoading(false);
+      });
   }, []);
 
   if (!isCategoriesLoading) {
@@ -23,29 +32,33 @@ const Categories = ({ setCategory, setSortCriteria, setSortByComments }) => {
         {categories.map((category) => {
           return (
             <button
+              className="categorybutton"
               key={category}
               onClick={(event) => {
                 event.preventDefault();
                 setCategory(category);
               }}
             >
-              {category}
+              {(category.charAt(0).toUpperCase() + category.slice(1)).replace(
+                /-/g,
+                ' '
+              )}
             </button>
           );
         })}
-        -
+        <br />
         <button
+          className="resetbutton"
           onClick={(event) => {
             event.preventDefault();
-            setCategory('');
-            setSortCriteria('');
-            setSortByComments(false);
+            resetClick();
           }}
         >
           Reset
         </button>
-        -
+        <br />
         <button
+          className="sortbutton"
           onClick={(event) => {
             event.preventDefault();
             setSortByComments(false);
@@ -55,6 +68,7 @@ const Categories = ({ setCategory, setSortCriteria, setSortByComments }) => {
           Date
         </button>
         <button
+          className="sortbutton"
           onClick={(event) => {
             event.preventDefault();
             setSortCriteria('');
@@ -64,6 +78,7 @@ const Categories = ({ setCategory, setSortCriteria, setSortByComments }) => {
           Comments
         </button>
         <button
+          className="sortbutton"
           onClick={(event) => {
             event.preventDefault();
             setSortByComments(false);
@@ -75,7 +90,11 @@ const Categories = ({ setCategory, setSortCriteria, setSortByComments }) => {
       </div>
     );
   } else {
-    return <div>...Loading</div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 };
 
