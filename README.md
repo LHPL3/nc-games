@@ -68,3 +68,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Hosted version
+
+https://boring-engelbart-547338.netlify.app/
+
+### Back End Repository
+
+https://github.com/LHPL3/be-nc-games
+
+### Hosted Back End
+
+https://lh-game-review.herokuapp.com/api/

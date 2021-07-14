@@ -22,8 +22,6 @@ const Home = () => {
       });
   }, []);
 
-  console.log(topReview);
-
   if (!homeIsLoading) {
     return (
       <div className="homecontainer">

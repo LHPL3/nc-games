@@ -35,11 +35,10 @@ const Comments = ({ signedInUser }) => {
   }, [review_id]);
 
   if (!isCommentsLoading) {
-    console.log(comments, 1);
     comments.sort((a, b) => {
       return b.comment_id - a.comment_id;
     });
-    console.log(comments, 2);
+
     if (comments.length === 0) {
       return (
         <div>
