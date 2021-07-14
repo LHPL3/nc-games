@@ -117,7 +117,7 @@ ul {
 }
 
 .border {
-  height: 78vh;
+  height: 76vh;
   border: dashed rgb(3, 4, 94);
   background-color: rgb(202, 240, 248);
   overflow-y: scroll;
