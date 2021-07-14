@@ -29,7 +29,7 @@ const Home = () => {
       <div className="homecontainer">
         <h3 className="reviewtitle">Top Rated Review:</h3>
         <Link to={`/reviews/${topReview.review_id}`}>
-          <p className="designer">{topReview.title}</p>
+          <p className="hometitle">{topReview.title}</p>
         </Link>
         <img
           className="topimage"
