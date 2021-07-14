@@ -56,7 +56,11 @@ const User = ({ setSignedInUser, errorMessage, setErrorMessage }) => {
             </button>
           </p>
           <span>
-            <img src={user.avatar_url} alt={user.username}></img>
+            <img
+              className="topimage"
+              src={user.avatar_url}
+              alt={user.username}
+            ></img>
             <ul>
               {filteredReviews.map((review) => {
                 return (
