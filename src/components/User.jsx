@@ -6,11 +6,12 @@ import { Link } from 'react-router-dom';
 import Error from './Error';
 import Loading from './Loading';
 
-const User = ({ setSignedInUser, errorMessage, setErrorMessage }) => {
+const User = ({ setSignedInUser }) => {
   const [user, setUser] = useState('');
   const [userReview, setUserReview] = useState([]);
   const [isUserLoading, setIsUserLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const { username } = useParams();
 
   useEffect(() => {

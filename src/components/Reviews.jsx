@@ -7,18 +7,12 @@ import { Link } from 'react-router-dom';
 import Error from './Error';
 import Loading from './Loading';
 
-const Reviews = ({
-  category,
-  setCategory,
-  reviews,
-  setReviews,
-  errorMessage,
-  setErrorMessage
-}) => {
+const Reviews = ({ category, setCategory, reviews, setReviews }) => {
   const [isReviewsLoading, setIsReviewsLoading] = useState(true);
   const [sortCriteria, setSortCriteria] = useState('');
   const [sortByComments, setSortByComments] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     getReviews(sortCriteria)

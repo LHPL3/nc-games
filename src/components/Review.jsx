@@ -6,10 +6,11 @@ import { useParams } from 'react-router';
 import Error from './Error';
 import Loading from './Loading';
 
-const Review = ({ signedInUser, errorMessage, setErrorMessage }) => {
+const Review = ({ signedInUser }) => {
   const [review, setReview] = useState('');
   const [isReviewLoading, setIsReviewLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const { review_id } = useParams();
 
   const getReview = () => {
@@ -71,7 +72,7 @@ const Review = ({ signedInUser, errorMessage, setErrorMessage }) => {
                 });
               }}
             >
-              +1
+              +
             </button>
           </p>
           <Comments signedInUser={signedInUser} />

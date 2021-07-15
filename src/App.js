@@ -14,7 +14,6 @@ function App() {
   const [category, setCategory] = useState('');
   const [reviews, setReviews] = useState('');
   const [signedInUser, setSignedInUser] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
 
   return (
     <div className="App">
@@ -22,11 +21,7 @@ function App() {
       <Navbar signedInUser={signedInUser} />
       <Switch>
         <Route exact path="/reviews/:review_id">
-          <Review
-            signedInUser={signedInUser}
-            errorMessage={errorMessage}
-            setErrorMessage={setErrorMessage}
-          />
+          <Review signedInUser={signedInUser} />
         </Route>
         <Route exact path="/">
           <Home />
@@ -37,19 +32,13 @@ function App() {
             setCategory={setCategory}
             reviews={reviews}
             setReviews={setReviews}
-            errorMessage={errorMessage}
-            setErrorMessage={setErrorMessage}
           />
         </Route>
         <Route exact path="/users">
           <Users />
         </Route>
         <Route exact path="/users/:username">
-          <User
-            setSignedInUser={setSignedInUser}
-            errorMessage={errorMessage}
-            setErrorMessage={setErrorMessage}
-          />
+          <User setSignedInUser={setSignedInUser} />
         </Route>
         <Route path="/">
           <Error />

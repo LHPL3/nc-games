@@ -73,7 +73,7 @@ const Comments = ({ signedInUser }) => {
                             );
                           }}
                         >
-                          Delete
+                          X
                         </button>
                       ) : null}
                       <br />- By {comment.author} on{' '}
@@ -90,7 +90,7 @@ const Comments = ({ signedInUser }) => {
                           );
                         }}
                       >
-                        +1
+                        +
                       </button>
                     </p>
                   </div>

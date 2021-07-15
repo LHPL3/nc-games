@@ -24,37 +24,24 @@ h1 {
   margin-bottom: 0;
   color: rgb(3, 4, 94);
   font-family: 'Zen Tokyo Zoo', cursive;
-  font-size: 40px;
+  font-size: 60px;
   text-shadow: 0 0 7px rgb(144, 224, 239), 0 0 10px rgb(144, 224, 239),
     0 0 21px rgb(144, 224, 239), 0 0 42px rgb(202, 240, 248),
     0 0 82px rgb(202, 240, 248), 0 0 92px rgb(202, 240, 248),
     0 0 102px rgb(202, 240, 248), 0 0 151px rgb(202, 240, 248);
-  /* animation-duration: 8s;
-  animation-name: slidein;
-  animation-iteration-count: infinite; */
 }
-
-/* @keyframes slidein {
-  0% {
-    margin-left: 0%;
-  }
-  33% {
-    margin-left: 300px;
-  }
-  66% {
-    margin-right: 300px;
-  }
-  100% {
-    margin-left: 0%;
-  }
-} */
 
 ul {
   list-style: none;
   padding-left: 0;
+  margin: 10px;
 }
 
 .homecontainer {
+  height: 82.75vh;
+}
+
+.errorcontainer {
   height: 82.75vh;
 }
 
@@ -63,21 +50,15 @@ ul {
 }
 
 .review {
+  margin: 10px;
+  display: flex;
+  flex-flow: column;
   position: relative;
+  align-content: center;
   border: dashed rgb(3, 4, 94);
   width: 300px;
   height: 275px;
-  margin: 10px;
   background-color: rgb(202, 240, 248);
-}
-
-.reviewtitle {
-  color: rgb(3, 4, 94);
-  margin: 0;
-  font-size: 25px;
-  text-align: center;
-  text-shadow: -1px -1px 0 rgb(255, 255, 255), 1px -1px 0 rgb(255, 255, 255),
-    -1px 1px 0 rgb(255, 255, 255), 1px 1px 0 rgb(255, 255, 255);
 }
 
 .reviewtitle {
@@ -140,27 +121,18 @@ ul {
   text-align: center;
 }
 
-.plusbutton {
-  border-radius: 1em;
-  background-color: rgb(3, 4, 94);
-  color: rgb(202, 240, 248);
-}
-
-.deletebutton {
-  border-radius: 1em;
-  background-color: rgb(153, 0, 0);
-  color: rgb(255, 255, 255);
-}
-
 .bottomtext {
   position: absolute;
   bottom: 0;
   margin-bottom: 0;
-  margin-left: 15px;
+  margin-left: 35px;
 }
 
 .toptext {
   margin-top: 1px;
+}
+
+a {
   text-decoration: none;
 }
 
@@ -203,6 +175,24 @@ ul {
   height: 88vh;
 }
 
+.plusbutton {
+  font-weight: bold;
+  border-radius: 1em;
+  background-color: rgb(3, 4, 94);
+  color: rgb(202, 240, 248);
+  width: 30px;
+  height: 30px;
+}
+
+.deletebutton {
+  font-weight: bold;
+  border-radius: 1em;
+  background-color: rgb(153, 0, 0);
+  color: rgb(255, 255, 255);
+  width: 30px;
+  height: 30px;
+}
+
 .userscontainer {
   height: 86vh;
 }
@@ -212,7 +202,6 @@ ul {
   flex-flow: row wrap;
   justify-content: space-evenly;
   align-content: center;
-  margin-top: 0px;
 }
 
 .menubutton {
@@ -260,6 +249,27 @@ ul {
   height: 90px;
 }
 
+.categorybar {
+  overflow: hidden;
+}
+
+.categorybar #categories {
+  display: none;
+}
+
+.categories-menu {
+  border-radius: 10px;
+  background-color: rgb(2, 62, 138);
+  color: rgb(202, 240, 248);
+  text-align: center;
+  padding: 2px;
+  margin: 2px;
+  font-size: large;
+  width: 105px;
+  height: 100px;
+  cursor: pointer;
+}
+
 .categorybutton {
   border-radius: 10px;
   background-color: rgb(0, 150, 199);
@@ -267,7 +277,9 @@ ul {
   text-align: center;
   padding: 2px;
   margin: 2px;
+  font-size: large;
   width: 105px;
+  height: 100px;
   cursor: pointer;
 }
 
@@ -278,18 +290,35 @@ ul {
   text-align: center;
   padding: 2px;
   margin: 2px;
-  width: 50px;
+  width: 100px;
+  height: 100px;
+  font-size: large;
+  cursor: pointer;
+}
+
+.sort-menu {
+  border-radius: 10px;
+  background-color: rgb(2, 62, 138);
+  color: rgb(202, 240, 248);
+  text-align: center;
+  padding: 2px;
+  margin: 2px;
+  font-size: large;
+  width: 105px;
+  height: 100px;
   cursor: pointer;
 }
 
 .sortbutton {
   border-radius: 10px;
-  background-color: rgb(2, 62, 138);
-  color: rgb(72, 202, 228);
+  background-color: rgb(0, 150, 199);
+  color: rgb(202, 240, 248);
   text-align: center;
   padding: 2px;
   margin: 2px;
-  width: 75px;
+  font-size: large;
+  width: 105px;
+  height: 100px;
   cursor: pointer;
 }
 
@@ -298,6 +327,22 @@ ul {
   position: relative;
   width: 50px;
   height: 50px;
+}
+
+.dropdown-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.errormessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(202, 240, 248);
+  text-align: center;
+  height: 200px;
+  font-size: xx-large;
 }
 
 .loader:after {
@@ -400,6 +445,24 @@ ul {
     font-size: 25px;
     text-shadow: -0.55px -0.55px 0 rgb(3, 4, 94), 0.55px -0.55px 0 rgb(3, 4, 94),
       -0.55px 0.55px 0 rgb(3, 4, 94), 0.55px 0.55px 0 rgb(3, 4, 94);
+  }
+
+  .plusbutton {
+    font-weight: bold;
+    border-radius: 1em;
+    background-color: rgb(3, 4, 94);
+    color: rgb(202, 240, 248);
+  }
+
+  .deletebutton {
+    font-weight: bold;
+    border-radius: 1em;
+    background-color: rgb(153, 0, 0);
+    color: rgb(255, 255, 255);
+  }
+
+  .errorcontainer {
+    height: 88vh;
   }
 }
 

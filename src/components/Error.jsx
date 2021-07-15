@@ -9,7 +9,11 @@ const Error = ({ errorMessage }) => {
   } else {
     err = '404: Resource not found';
   }
-  return <div>{err}</div>;
+  return (
+    <div className="errorcontainer">
+      <span className="errormessage">{err}</span>
+    </div>
+  );
 };
 
 export default Error;
