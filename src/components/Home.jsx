@@ -4,10 +4,13 @@ import { useState } from 'react';
 import Loading from './Loading';
 import { amendDate } from '../utils/utils';
 import { Link } from 'react-router-dom';
+import Error from './Error';
 
 const Home = () => {
   const [homeIsLoading, setHomeIsLoading] = useState(true);
   const [topReview, setTopReview] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     getReviews()
@@ -16,26 +19,36 @@ const Home = () => {
           return b.votes - a.votes;
         });
         setTopReview(reviews[0]);
-      })
-      .then((response) => {
         setHomeIsLoading(false);
+      })
+      .catch((err) => {
+        setErrorMessage(err.response);
+        setIsError(true);
       });
   }, []);
 
+  if (isError) {
+    return (
+      <div>
+        <Error errorMessage={errorMessage} />
+      </div>
+    );
+  }
+
   if (!homeIsLoading) {
     return (
-      <div className="homecontainer">
+      <div className="home-container">
         <h3 className="reviewtitle">Top Rated Review:</h3>
         <Link to={`/reviews/${topReview.review_id}`}>
-          <p className="hometitle">{topReview.title}</p>
+          <p className="home-title">{topReview.title}</p>
         </Link>
         <img
           className="topimage"
           src={topReview.review_img_url}
           alt={topReview.title}
         ></img>
-        <p>
-          by {topReview.owner} - posted on {amendDate(topReview.created_at)}
+        <p className="post-details">
+          By {topReview.owner} - Created: {amendDate(topReview.created_at)}
         </p>
       </div>
     );

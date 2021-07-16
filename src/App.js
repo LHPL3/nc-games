@@ -9,30 +9,27 @@ import Review from './components/Review';
 import Users from './components/Users';
 import User from './components/User';
 import Error from './components/Error';
+import Category from './components/Category';
 
 function App() {
-  const [category, setCategory] = useState('');
-  const [reviews, setReviews] = useState('');
   const [signedInUser, setSignedInUser] = useState('');
 
   return (
     <div className="App">
-      <Header />
-      <Navbar signedInUser={signedInUser} />
+      <Header signedInUser={signedInUser} />
+      <Navbar />
       <Switch>
         <Route exact path="/reviews/:review_id">
           <Review signedInUser={signedInUser} />
+        </Route>
+        <Route exact path="/category/:category">
+          <Category />
         </Route>
         <Route exact path="/">
           <Home />
         </Route>
         <Route exact path="/reviews">
-          <Reviews
-            category={category}
-            setCategory={setCategory}
-            reviews={reviews}
-            setReviews={setReviews}
-          />
+          <Reviews />
         </Route>
         <Route exact path="/users">
           <Users />

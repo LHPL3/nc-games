@@ -16,6 +16,20 @@ export const getReviews = async (sortCriteria) => {
   }
 };
 
+export const getReviewsByCategory = async (category, sortCriteria) => {
+  if (sortCriteria !== '') {
+    const { data } = await baseApi.get('/reviews', {
+      params: { category: category, sort_by: sortCriteria }
+    });
+    return data.reviews;
+  } else {
+    const { data } = await baseApi.get('/reviews', {
+      params: { category: category }
+    });
+    return data.reviews;
+  }
+};
+
 export const getReviewById = async (review_id) => {
   const { data } = await baseApi.get(`/reviews/${review_id}`);
   return data.review;

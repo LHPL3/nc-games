@@ -3,18 +3,15 @@ import { useState } from 'react';
 import { useParams } from 'react-router';
 import { addComment } from '../utils/api';
 
-const Addcomment = ({ signedInUser, getComments, setIsCommentsLoading }) => {
+const AddComment = ({ signedInUser, getComments, setIsCommentsLoading }) => {
   const { review_id } = useParams();
   const [newComment, setNewComment] = useState('');
 
   const addClick = () => {
-    addComment(review_id, signedInUser, newComment)
-      .then((response) => {
-        getComments();
-      })
-      .then((response) => {
-        setIsCommentsLoading(true);
-      });
+    addComment(review_id, signedInUser, newComment).then((response) => {
+      getComments();
+      setIsCommentsLoading(true);
+    });
   };
 
   return (
@@ -44,4 +41,4 @@ const Addcomment = ({ signedInUser, getComments, setIsCommentsLoading }) => {
   );
 };
 
-export default Addcomment;
+export default AddComment;

@@ -2,91 +2,80 @@ import React from 'react';
 import { getCategories } from '../utils/api';
 import { useState, useEffect } from 'react';
 import Loading from './Loading';
+import { Link } from 'react-router-dom';
+import Error from './Error';
 
-const Categories = ({ setCategory, setSortCriteria, setSortByComments }) => {
+const Categories = ({ setSortCriteria }) => {
   const [categories, setCategories] = useState('');
   const [isCategoriesLoading, setIsCategoriesLoading] = useState(true);
-  const [showMenu, setShowMenu] = useState(false);
+  const [showCategories, setShowCategories] = useState(false);
   const [showSort, setShowSort] = useState(false);
-
-  const resetClick = () => {
-    setCategory('');
-    setSortCriteria('');
-    setSortByComments(false);
-    setShowSort(false);
-    setShowMenu(false);
-  };
-
-  const displayMenu = () => {
-    setShowMenu(true);
-  };
-
-  const displaySort = () => {
-    setShowSort(true);
-  };
-
-  const hideSort = (sort) => {
-    setSortCriteria(sort);
-    setShowSort(false);
-  };
-
-  const hideMenu = (category) => {
-    setCategory(category);
-    setShowMenu(false);
-  };
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     getCategories()
       .then((response) => {
-        const cats = response.map((category) => {
-          return category.slug;
-        });
-        setCategories(cats);
-      })
-      .then((response) => {
+        setCategories(response);
         setIsCategoriesLoading(false);
+      })
+      .catch((err) => {
+        setErrorMessage(err.response);
+        setIsError(true);
       });
   }, []);
 
-  if (!isCategoriesLoading) {
+  if (isError) {
     return (
       <div>
-        <button
-          className="categories-menu"
-          onClick={(event) => {
-            event.preventDefault();
-            displayMenu();
-          }}
-        >
-          Categories
-        </button>
-        <button
-          className="sort-menu"
-          onClick={(event) => {
-            event.preventDefault();
-            displaySort();
-          }}
-        >
-          Sort-by
-        </button>
+        <Error errorMessage={errorMessage} />
+      </div>
+    );
+  }
 
-        {showMenu ? (
+  if (!isCategoriesLoading) {
+    return (
+      <div className="category-bar">
+        <span className="filter-button">
+          <button
+            className="menu"
+            onClick={(event) => {
+              event.preventDefault();
+              setShowCategories(() => {
+                return !showCategories;
+              });
+            }}
+          >
+            Categories
+          </button>
+          <button
+            className="menu"
+            onClick={(event) => {
+              event.preventDefault();
+              setShowSort(() => {
+                return !showSort;
+              });
+            }}
+          >
+            Sort-by
+          </button>
+        </span>
+        {showCategories ? (
           <div className="dropdown-menu">
-            {categories.map((category) => {
+            {categories.map(({ slug }) => {
               return (
-                <button
-                  id="dropdown-item"
-                  className="categorybutton"
-                  key={category}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    hideMenu(category);
-                  }}
-                >
-                  {(
-                    category.charAt(0).toUpperCase() + category.slice(1)
-                  ).replace(/-/g, ' ')}
-                </button>
+                <Link to={`/category/${slug}`}>
+                  <button
+                    id="dropdown-item"
+                    className="categorybutton"
+                    key={slug}
+                  >
+                    {(slug.charAt(0).toUpperCase() + slug.slice(1)).replace(
+                      /-/g,
+                      ' '
+                    )}
+                  </button>
+                </Link>
               );
             })}
           </div>
@@ -97,43 +86,23 @@ const Categories = ({ setCategory, setSortCriteria, setSortByComments }) => {
               className="sortbutton"
               onClick={(event) => {
                 event.preventDefault();
-                hideSort('created_at');
-                setSortByComments(false);
+                setSortCriteria('created_at');
               }}
             >
               Date
             </button>
+
             <button
               className="sortbutton"
               onClick={(event) => {
                 event.preventDefault();
-                setSortByComments(true);
-                hideSort('');
-              }}
-            >
-              Comments
-            </button>
-            <button
-              className="sortbutton"
-              onClick={(event) => {
-                event.preventDefault();
-                setSortByComments(false);
-                hideSort('votes');
+                setSortCriteria('votes');
               }}
             >
               Votes
             </button>
           </div>
         ) : null}
-        <button
-          className="resetbutton"
-          onClick={(event) => {
-            event.preventDefault();
-            resetClick();
-          }}
-        >
-          Reset
-        </button>
       </div>
     );
   } else {

@@ -20,7 +20,7 @@ const Review = ({ signedInUser }) => {
         setIsReviewLoading(false);
       })
       .catch((err) => {
-        setErrorMessage(err.response.data.msg);
+        setErrorMessage(err.response);
         setIsError(true);
       });
   };
@@ -32,7 +32,7 @@ const Review = ({ signedInUser }) => {
         setIsReviewLoading(false);
       })
       .catch((err) => {
-        setErrorMessage(err.response.data.msg);
+        setErrorMessage(err.response);
         setIsError(true);
       });
   }, [review_id, setErrorMessage]);
@@ -58,8 +58,8 @@ const Review = ({ signedInUser }) => {
               alt={review.title}
             ></img>
           </span>
-          <p>
-            by {review.owner} - posted on {amendDate(review.created_at)}
+          <p className="post-details">
+            By {review.owner} - posted on {amendDate(review.created_at)}
           </p>
           <p>
             Votes: {review.votes}

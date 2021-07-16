@@ -1,32 +1,31 @@
-import React from 'react';
-import Categories from './Categories';
-import { getReviews } from '../utils/api';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { getReviewsByCategory } from '../utils/api';
 import { amendDate } from '../utils/utils';
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Error from './Error';
 import Loading from './Loading';
+import Categories from './Categories';
+import Error from './Error';
 
-const Reviews = () => {
+const Category = () => {
+  const { category } = useParams();
+  const [filteredReviews, setFilteredReviews] = useState([]);
   const [isReviewsLoading, setIsReviewsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
   const [sortCriteria, setSortCriteria] = useState('');
-  const [reviews, setReviews] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    getReviews(sortCriteria)
+    getReviewsByCategory("'" + category + "'", sortCriteria)
       .then((response) => {
-        setReviews(response);
+        setFilteredReviews(response);
         setIsReviewsLoading(false);
       })
       .catch((err) => {
         setErrorMessage(err.response);
         setIsError(true);
       });
-  }, [sortCriteria, setReviews, setErrorMessage]);
-
-  let filteredReviews = reviews;
+  }, [category, sortCriteria]);
 
   if (isError) {
     return (
@@ -38,9 +37,9 @@ const Reviews = () => {
 
   if (!isReviewsLoading) {
     return (
-      <div className="container">
+      <section className="container">
         <Categories setSortCriteria={setSortCriteria} />
-        {sortCriteria}
+        {category}-{sortCriteria}
         <ul className="reviews">
           {filteredReviews.map((review) => {
             return (
@@ -68,15 +67,14 @@ const Reviews = () => {
             );
           })}
         </ul>
-      </div>
+      </section>
     );
   } else {
     return (
       <div>
-        <Loading />
+        <Loading />;
       </div>
     );
   }
 };
-
-export default Reviews;
+export default Category;

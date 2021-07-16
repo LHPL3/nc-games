@@ -19,10 +19,10 @@ const User = ({ setSignedInUser }) => {
       .then((values) => {
         setUser(values[0]);
         setUserReview(values[1]);
+        setIsUserLoading(false);
       })
-      .then(setIsUserLoading(false))
       .catch((err) => {
-        setErrorMessage(err.response.data.msg);
+        setErrorMessage(err.response);
         setIsError(true);
       });
   }, [username, setErrorMessage]);
@@ -66,7 +66,7 @@ const User = ({ setSignedInUser }) => {
               {filteredReviews.map((review) => {
                 return (
                   <li key={review.review_id}>
-                    <div className="userreview">
+                    <div className="comment">
                       <Link to={`/reviews/${review.review_id}`}>
                         <h3>{review.title}</h3>
                       </Link>
