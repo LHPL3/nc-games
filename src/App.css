@@ -55,7 +55,6 @@ ul {
 }
 
 .review {
-  margin: 10px;
   display: flex;
   flex-flow: column;
   position: relative;
@@ -401,7 +400,6 @@ a {
   }
 
   .review {
-    margin: 10px;
     display: flex;
     flex-flow: column;
     position: relative;
