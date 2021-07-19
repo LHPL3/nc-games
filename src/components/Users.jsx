@@ -34,7 +34,9 @@ const Users = ({ signedInUser }) => {
   if (!isUsersLoading) {
     return (
       <div className="userscontainer">
-        {signedInUser ? null : 'Please select a user to sign in'}
+        {signedInUser ? null : (
+          <span className="users">Please select a user to sign in</span>
+        )}
         <ul className="users">
           {users.map((user) => {
             return (

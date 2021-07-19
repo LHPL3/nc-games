@@ -50,25 +50,25 @@ const Category = () => {
           {filteredReviews.map((review) => {
             return (
               <li key={review.review_id}>
-                <div className="review">
-                  <Link to={`/reviews/${review.review_id}`}>
+                <Link to={`/reviews/${review.review_id}`}>
+                  <div className="review">
                     <h3 className="toptext">{review.title}</h3>
-                  </Link>
-                  <img
-                    className="reviewimage"
-                    alt={review.title}
-                    src={review.review_img_url}
-                  ></img>
-                  <p className="bottomtext">
-                    Votes: {review.votes} - Category:{' '}
-                    {(
-                      review.category.charAt(0).toUpperCase() +
-                      review.category.slice(1)
-                    ).replace(/-/g, ' ')}
-                    <br />
-                    Created: {amendDate(review.created_at)}
-                  </p>
-                </div>
+                    <img
+                      className="reviewimage"
+                      alt={review.title}
+                      src={review.review_img_url}
+                    ></img>
+                    <p className="bottomtext">
+                      Votes: {review.votes} - Category:
+                      {(
+                        review.category.charAt(0).toUpperCase() +
+                        review.category.slice(1)
+                      ).replace(/-/g, ' ')}
+                      <br />
+                      Created: {amendDate(review.created_at)}
+                    </p>
+                  </div>
+                </Link>
               </li>
             );
           })}

@@ -107,10 +107,6 @@ ul {
   width: auto;
 }
 
-.reviewarea {
-  height: 88vh;
-}
-
 .columns {
   display: flex;
   flex-direction: column;
@@ -234,9 +230,9 @@ a {
   border-color: rgb(175, 93, 99);
   color: rgb(25, 42, 81);
   text-align: center;
+  font-size: x-large;
   padding: 5px;
-  margin: 5px;
-  width: 125px;
+  margin: 10px;
   cursor: pointer;
 }
 
@@ -248,6 +244,7 @@ a {
   text-align: center;
   padding: 5px;
   margin-left: 15px;
+  font-size: x-large;
   width: 125px;
   cursor: pointer;
 }
@@ -294,7 +291,7 @@ a {
   border-width: 5px;
   text-align: center;
   margin: 2px;
-  font-size: large;
+  font-size: medium;
   width: 150px;
   height: 100px;
   cursor: pointer;
@@ -382,7 +379,6 @@ a {
     flex-flow: row wrap;
     justify-content: center;
     align-content: flex-start;
-    height: 77.5vh;
   }
 
   .user {
@@ -502,5 +498,19 @@ a {
   .category-bar {
     width: 100.5%;
     text-align: center;
+  }
+
+  .categorybutton {
+    background-color: rgb(175, 93, 99);
+    color: rgb(240, 236, 138);
+    border-color: rgb(19, 196, 163);
+    border-radius: 15px;
+    border-width: 5px;
+    text-align: center;
+    margin: 2px;
+    font-size: large;
+    width: 150px;
+    height: 100px;
+    cursor: pointer;
   }
 }

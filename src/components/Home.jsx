@@ -38,18 +38,20 @@ const Home = () => {
   if (!homeIsLoading) {
     return (
       <div className="home-container">
-        <h2 className="reviewtitle">Top Rated Review:</h2>
         <Link to={`/reviews/${topReview.review_id}`}>
-          <p className="home-title">{topReview.title}</p>
+          <section className="border">
+            <h2 className="reviewtitle">Top Rated Review:</h2>
+            <p className="home-title">{topReview.title}</p>
+            <img
+              className="topimage"
+              src={topReview.review_img_url}
+              alt={topReview.title}
+            ></img>
+            <p className="post-details">
+              By {topReview.owner} - Created: {amendDate(topReview.created_at)}
+            </p>
+          </section>
         </Link>
-        <img
-          className="topimage"
-          src={topReview.review_img_url}
-          alt={topReview.title}
-        ></img>
-        <p className="post-details">
-          By {topReview.owner} - Created: {amendDate(topReview.created_at)}
-        </p>
       </div>
     );
   } else {
