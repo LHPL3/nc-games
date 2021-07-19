@@ -61,29 +61,30 @@ const Categories = ({ setSortCriteria }) => {
           </button>
         </span>
         {showCategories ? (
-          <div className="dropdown-menu">
-            {categories.map(({ slug }) => {
-              return (
-                <Link to={`/category/${slug}`}>
-                  <button
-                    id="dropdown-item"
-                    className="categorybutton"
-                    key={slug}
-                  >
-                    {(slug.charAt(0).toUpperCase() + slug.slice(1)).replace(
-                      /-/g,
-                      ' '
-                    )}
-                  </button>
-                </Link>
-              );
-            })}
+          <div>
+            <ul>
+              {categories.map(({ slug }) => {
+                return (
+                  <li className="dropdown-menu" key={slug}>
+                    <Link to={`/category/${slug}`}>
+                      <button className="categorybutton">
+                        {(slug.charAt(0).toUpperCase() + slug.slice(1)).replace(
+                          /-/g,
+                          ' '
+                        )}
+                      </button>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         ) : null}
         {showSort ? (
           <div className="dropdown-menu">
             <button
               className="sortbutton"
+              key="date"
               onClick={(event) => {
                 event.preventDefault();
                 setSortCriteria('created_at');
@@ -94,6 +95,7 @@ const Categories = ({ setSortCriteria }) => {
 
             <button
               className="sortbutton"
+              key="votes"
               onClick={(event) => {
                 event.preventDefault();
                 setSortCriteria('votes');

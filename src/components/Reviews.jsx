@@ -40,7 +40,7 @@ const Reviews = () => {
     return (
       <div className="container">
         <Categories setSortCriteria={setSortCriteria} />
-        {sortCriteria}
+        {sortCriteria ? `Sorted by: ${sortCriteria}` : null}
         <ul className="reviews">
           {filteredReviews.map((review) => {
             return (

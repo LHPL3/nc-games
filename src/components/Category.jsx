@@ -39,7 +39,9 @@ const Category = () => {
     return (
       <section className="container">
         <Categories setSortCriteria={setSortCriteria} />
-        {category}-{sortCriteria}
+        {category ? `Filtered by: ${category}` : null}
+        <br />
+        {sortCriteria ? `Sorted by: ${sortCriteria}` : null}
         <ul className="reviews">
           {filteredReviews.map((review) => {
             return (

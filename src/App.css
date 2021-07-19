@@ -8,22 +8,22 @@
 .App {
   text-align: center;
   font-family: 'Nunito', sans-serif;
+  width: 100vw;
+
+  margin: 0px;
+}
+
+body,
+html {
+  height: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
   background-image: linear-gradient(
     to bottom,
     rgb(25, 42, 81),
     rgb(39, 154, 241)
   );
-  width: 100vw;
-  height: 100%;
-  margin: 0px;
-  overflow: hidden;
-}
-
-body,
-html {
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
 }
 
 h1 {
@@ -40,14 +40,7 @@ ul {
   list-style: none;
   padding-left: 0;
   margin: 10px;
-}
-.home-container {
-  height: 80vh;
-}
-
-.errorcontainer {
-  height: 82.75vh;
-  overflow-y: auto;
+  height: 100%;
 }
 
 .users {
@@ -59,10 +52,6 @@ ul {
   font-style: italic;
   font-size: 15px;
   margin: 0;
-}
-
-.dropdown-menu {
-  justify-content: center;
 }
 
 .review {
@@ -193,20 +182,11 @@ a {
   border-color: rgb(25, 42, 81);
 }
 
-.container {
-  max-height: 80vh;
-  overflow-y: auto;
-}
-
 .topimage {
   border: outset;
   height: 200px;
   width: 200px;
   border-color: rgb(25, 42, 81);
-}
-
-.usercontainer {
-  height: 88vh;
 }
 
 .plusbutton {
@@ -225,10 +205,6 @@ a {
   color: rgb(255, 255, 255);
   width: 30px;
   height: 30px;
-}
-
-.userscontainer {
-  height: 86vh;
 }
 
 .reviews {
@@ -283,12 +259,6 @@ a {
   margin-top: 0px;
 }
 
-.navarea {
-  width: auto;
-  display: flex;
-  flex-flow: column wrap;
-}
-
 .menu {
   border-radius: 15px;
   border-width: 5px;
@@ -325,12 +295,31 @@ a {
   border-radius: 15px;
   border-width: 5px;
   text-align: center;
-
   margin: 2px;
   font-size: large;
   width: 150px;
   height: 100px;
   cursor: pointer;
+}
+
+.category-bar {
+  width: 100%;
+  text-align: center;
+}
+
+.dropdown-menu {
+  display: inline;
+}
+
+.navarea {
+  width: 100%;
+  text-align: center;
+}
+
+.container {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100%;
 }
 
 .loader {
@@ -390,27 +379,12 @@ a {
     margin: 0px 120px 0px 120px;
   }
 
-  .homecontainer {
-    height: 100vh;
-  }
-
   .reviews {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-content: flex-start;
     height: 77.5vh;
-  }
-
-  .container {
-    max-height: 78vh;
-    overflow-y: auto;
-  }
-
-  .category-bar {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
   }
 
   .user {
@@ -474,18 +448,12 @@ a {
     border-radius: 1em;
     background-color: rgb(153, 0, 0);
     color: rgb(255, 255, 255);
-  }
-
-  .errorcontainer {
-    height: 88vh;
+    width: auto;
   }
 
   .filter-button {
     width: auto;
-  }
-
-  .usercontainer {
-    max-height: 77vh;
+    margin: auto;
   }
 
   .reviewbody {
@@ -535,5 +503,15 @@ a {
     height: 252.5px;
     width: 252.5px;
     border-color: rgb(25, 42, 81);
+  }
+
+  .container {
+    overflow-y: scroll;
+    height: 100%;
+  }
+
+  .category-bar {
+    width: 100.5%;
+    text-align: center;
   }
 }

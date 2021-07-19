@@ -11,7 +11,7 @@ const Header = ({ signedInUser }) => {
         <span className="user">Signed in as {signedInUser}</span>
       ) : (
         <Link to="/users">
-          <span className="users">Please sign in</span>
+          <span className="users">Please sign in --- ⟱</span>
         </Link>
       )}
     </div>

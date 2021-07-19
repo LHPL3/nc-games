@@ -32,7 +32,7 @@ function App() {
           <Reviews />
         </Route>
         <Route exact path="/users">
-          <Users />
+          <Users signedInUser={signedInUser} />
         </Route>
         <Route exact path="/users/:username">
           <User setSignedInUser={setSignedInUser} />

@@ -24,7 +24,7 @@ const AddComment = ({ signedInUser, getComments, setIsCommentsLoading }) => {
             setNewComment(event.target.value);
           }}
         ></input>
-        {signedInUser ? (
+        {signedInUser && newComment ? (
           <button
             onClick={(event) => {
               event.preventDefault();
@@ -33,8 +33,10 @@ const AddComment = ({ signedInUser, getComments, setIsCommentsLoading }) => {
           >
             Submit!
           </button>
-        ) : (
+        ) : !signedInUser ? (
           <p>Sign in to comment!</p>
+        ) : (
+          <p> Please enter a comment!</p>
         )}
       </span>
     </div>

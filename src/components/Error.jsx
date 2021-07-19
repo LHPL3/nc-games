@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Error = ({ errorMessage }) => {
-  console.log(errorMessage);
   let err = '';
   if (errorMessage) {
     err = `${errorMessage.status}: ${errorMessage.data.msg}`;

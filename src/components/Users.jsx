@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Loading from './Loading';
 import Error from './Error';
 
-const Users = () => {
+const Users = ({ signedInUser }) => {
   const [users, setUsers] = useState('');
   const [isUsersLoading, setIsUsersLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
@@ -34,6 +34,7 @@ const Users = () => {
   if (!isUsersLoading) {
     return (
       <div className="userscontainer">
+        {signedInUser ? null : 'Please select a user to sign in'}
         <ul className="users">
           {users.map((user) => {
             return (

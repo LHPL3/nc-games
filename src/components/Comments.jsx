@@ -83,7 +83,7 @@ const Comments = ({ signedInUser }) => {
                           });
                         }}
                       >
-                        X
+                        Delete
                       </button>
                     ) : null}
                     <br />
