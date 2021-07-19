@@ -38,7 +38,7 @@ const Home = () => {
   if (!homeIsLoading) {
     return (
       <div className="home-container">
-        <h3 className="reviewtitle">Top Rated Review:</h3>
+        <h2 className="reviewtitle">Top Rated Review:</h2>
         <Link to={`/reviews/${topReview.review_id}`}>
           <p className="home-title">{topReview.title}</p>
         </Link>

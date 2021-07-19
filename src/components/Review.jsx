@@ -4,6 +4,7 @@ import { amendDate } from '../utils/utils';
 import Comments from './Comments';
 import { useParams } from 'react-router';
 import Error from './Error';
+
 import Loading from './Loading';
 
 const Review = ({ signedInUser }) => {
@@ -52,6 +53,8 @@ const Review = ({ signedInUser }) => {
           <p className="designer">Game Designer: {review.designer}</p>
           <span className="columns">
             <p className="reviewbody">{review.review_body}</p>
+            <br />
+
             <img
               className="image"
               src={review.review_img_url}

@@ -101,7 +101,7 @@ ul {
 }
 
 .border {
-  height: 76vh;
+  height: auto;
   border: ridge rgb(175, 93, 99);
   background-color: rgb(240, 236, 138);
   overflow-y: scroll;
@@ -116,13 +116,14 @@ ul {
   display: flex;
   flex-direction: column;
   align-content: center;
-  margin-left: 25px;
+  justify-content: center;
 }
 
 .reviewbody {
   width: 50vh;
   font-size: 15px;
   text-align: center;
+  margin: auto;
 }
 
 .comment {
@@ -177,7 +178,7 @@ a {
 .image {
   height: 252.5px;
   width: 252.5px;
-  margin-left: 35px;
+  margin: auto;
   border: outset;
   border-color: rgb(25, 42, 81);
 }
@@ -203,8 +204,6 @@ a {
   border-radius: 1em;
   background-color: rgb(153, 0, 0);
   color: rgb(255, 255, 255);
-  width: 30px;
-  height: 30px;
 }
 
 .reviews {
@@ -365,7 +364,7 @@ a {
   }
 }
 
-@media only screen and (min-width: 1050px) {
+@media only screen and (min-width: 1281px) {
   .columns {
     display: flex;
     justify-content: space-evenly;
@@ -441,14 +440,6 @@ a {
     border-radius: 1em;
     background-color: rgb(25, 42, 81);
     color: rgb(202, 240, 248);
-  }
-
-  .deletebutton {
-    font-weight: bold;
-    border-radius: 1em;
-    background-color: rgb(153, 0, 0);
-    color: rgb(255, 255, 255);
-    width: auto;
   }
 
   .filter-button {

@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router';
 import { addComment } from '../utils/api';
+import { Link } from 'react-router-dom';
 
 const AddComment = ({ signedInUser, getComments, setIsCommentsLoading }) => {
   const { review_id } = useParams();
@@ -34,7 +35,9 @@ const AddComment = ({ signedInUser, getComments, setIsCommentsLoading }) => {
             Submit!
           </button>
         ) : !signedInUser ? (
-          <p>Sign in to comment!</p>
+          <Link to="/users">
+            <p>Sign in to comment!</p>
+          </Link>
         ) : (
           <p> Please enter a comment!</p>
         )}
